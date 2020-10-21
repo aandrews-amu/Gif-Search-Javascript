@@ -1,13 +1,13 @@
 let numCols = 0;
 
-function getGifs(limit, query) {
+const getGifs = (limit, query) => {
   const apiKey = "7Erj1LUTR77H1QvQeKYB8aAXambSNMyp";
   const apiUrl = `https://api.giphy.com/v1/gifs/search?q=${query}&api_key=${apiKey}&limit=${limit}&offset=${numCols}`;
   const gifs = fetch(apiUrl).then((response) => response.json());
   return gifs;
 }
 
-function buildRemoveButton() {
+const buildRemoveButton = () => {
   const removeButton = document.createElement("button");
   removeButton.classList.add("btn-outline-secondary", "btn");
   removeButton.innerText = "x";
@@ -19,7 +19,7 @@ function buildRemoveButton() {
   return removeButton;
 }
 
-function buildCol(gifUrl) {
+const buildCol = gifUrl => {
   numCols++;
   const column = document.createElement("div");
   column.classList.add("boxes__box");
@@ -30,7 +30,7 @@ function buildCol(gifUrl) {
   return column;
 }
 
-async function buildRow(childCount, gifType) {
+const buildRow = async (childCount, gifType) => {
   let rowDiv;
   const existRow = document.querySelector(".boxes") != undefined;
   if (existRow){
@@ -53,7 +53,7 @@ async function buildRow(childCount, gifType) {
 }
 
 const form = document.getElementById("form");
-form.onsubmit = function (event) {
+form.onsubmit =  (event) => {
   event.preventDefault();
   const searchTerm = document.getElementById("search-term").value.trim();
   const numGifs = document.getElementById("num-gif").value;
